@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <string>
 #include <cmath>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 class coordinate
@@ -35,14 +37,12 @@ ostream& operator<<(ostream& os, const coordinate& c)
 
 void test_case(const string& str)
 {
-    istringstream is(str);
-    string s;
-    while (is >> s)
+    vector<coordinate> coordinates;
+    vector<string> tokens{ istream_iterator<string>{istringstream(str)}, istream_iterator<string>{} };
+    for (const auto &token : tokens)
     {
-        coordinate c(s);
-        cout << c << endl;
+        coordinates.push_back(coordinate(token));
     }
-
 }
 
 int main()
