@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 #include <string>
 #include <cmath>
 using namespace std;
@@ -10,6 +11,8 @@ public:
     coordinate(const string& str) : m_value(to_value(str))
     {
     }
+
+    friend ostream& operator<<(ostream& os, const coordinate& c);
 
 private:
     int to_value(const string& str)
@@ -22,6 +25,14 @@ private:
     int m_value;
 };
 
+ostream& operator<<(ostream& os, const coordinate& c)
+{
+    os << c.m_value / (int)pow(10, (int)coordinate::PRECISION) 
+       << '.' 
+       << setw(coordinate::PRECISION) << setfill('0') << c.m_value % (int)pow(10, (int)coordinate::PRECISION);
+    return os;
+}
+
 void test_case(const string& str)
 {
     istringstream is(str);
@@ -29,6 +40,7 @@ void test_case(const string& str)
     while (is >> s)
     {
         coordinate c(s);
+        cout << c << endl;
     }
 
 }
