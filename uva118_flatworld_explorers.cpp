@@ -2,17 +2,49 @@
 #include <string>
 using namespace std;
 
+int direction_to_angle(char c)
+{
+    switch (c)
+    {
+    case 'E':
+        return 0;
+    case 'N':
+        return 90;
+    case 'W':
+        return 180;
+    case 'S':
+        return 270;
+    }
+    return 0;
+}
+
+char angle_to_direction(int angle)
+{
+    switch (angle % 360)
+    {
+    case 0:
+        return 'E';
+    case 90:
+        return 'N';
+    case 180:
+        return 'W';
+    case 270:
+        return 'S';
+    }
+    return '\0';
+}
+
 class robot
 {
 public:
-    robot(int x, int y, char direction): m_x(x), m_y(y), m_direction(direction)
+    robot(int x, int y, char direction): m_x(x), m_y(y), m_angle(direction_to_angle(direction))
     {
     }
 
 private:
     int m_x;
     int m_y;
-    char m_direction;
+    int m_angle; // east: 0, north: 90, west: 180, south: 270 (degree)
 };
 class robot_commander
 {
