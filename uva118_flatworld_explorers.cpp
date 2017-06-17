@@ -41,6 +41,12 @@ public:
     {
     }
 
+    friend ostream& operator<<(ostream& os, const robot& r)
+    {
+        os << r.m_x << " " << r.m_y << " " << angle_to_direction(r.m_angle);
+        return os;
+    }
+
 private:
     int m_x;
     int m_y;
@@ -75,11 +81,11 @@ int main()
         robot r(x, y, direction);
         if(commander.send_robot(r, commands))
         {
-            // TODO: output robot position
+            cout << r << endl;
         }
         else
         {
-            // TODO: output robot position and lost
+            cout << r << " LOST" << endl;
         }
     }
     return 0;
