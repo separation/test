@@ -16,14 +16,21 @@ private:
 class robot
 {
 public:
-    robot(int x, int y, char direction) : m_x(x), m_y(y), m_direction(direction)
+    robot(int x, int y, char direction) : m_x(x), m_y(y), m_direction(direction), m_alive(true)
     {
+    }
+
+    friend ostream& operator<<(ostream& os, const robot& r)
+    {
+        os << r.m_x << " " << r.m_y << " " << r.m_direction << (r.m_alive ? "" : " LOST");
+        return os;
     }
 
 private:
     int m_x;
     int m_y;
     char m_direction;
+    bool m_alive;
 };
 
 class robot_commander
@@ -48,6 +55,7 @@ int main()
     {
         robot my_robot(x, y, direction);
         commander.send_robot(my_world, commands, my_robot);
+        cout << my_robot << endl;
     }
     return 0;
 }
