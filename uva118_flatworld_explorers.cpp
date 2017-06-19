@@ -26,6 +26,14 @@ private:
     char m_direction;
 };
 
+class robot_commander
+{
+public:
+    void send_robot(const world& w, const string& commands, robot& r)
+    {
+    }
+};
+
 int main()
 {
     int x_bound = 0, y_bound = 0;
@@ -35,9 +43,11 @@ int main()
     char direction = '\0';
     string commands;
     int x = 0, y = 0;
+    robot_commander commander;
     while (cin >> x >> y >> direction >> commands)
     {
         robot my_robot(x, y, direction);
+        commander.send_robot(my_world, commands, my_robot);
     }
     return 0;
 }
