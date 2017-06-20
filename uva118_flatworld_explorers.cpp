@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class world
@@ -16,5 +17,11 @@ int main()
     int x = 0, y = 0;
     cin >> x >> y;
     world my_world(x, y);
+
+    char direction = '\0'; string commands;
+    while (cin >> x >> y >> direction >> commands)
+    {
+    }
+
     return 0;
 }
