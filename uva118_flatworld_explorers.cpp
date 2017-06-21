@@ -29,10 +29,15 @@ int main()
     char direction = '\0'; string commands;
     while (cin >> x >> y >> direction >> commands)
     {
+        cout << x << " " << y << " " << direction;
+
         if (scents.find({ x, y }) == scents.end() && my_world.is_outside(x, y))
         {
             scents.insert({ x, y });
+            cout << " LOST";
         }
+
+        cout << endl;
     }
 
     return 0;
