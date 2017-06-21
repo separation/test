@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <set>
+#include <utility>
 using namespace std;
 
 class world
@@ -23,10 +25,14 @@ int main()
     cin >> x >> y;
     world my_world(x, y);
 
+    set<pair<int, int>> scents;
     char direction = '\0'; string commands;
     while (cin >> x >> y >> direction >> commands)
     {
-        my_world.is_outside(x, y);
+        if (scents.find({ x, y }) == scents.end() && my_world.is_outside(x, y))
+        {
+            scents.insert({ x, y });
+        }
     }
 
     return 0;
